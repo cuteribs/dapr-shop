@@ -1,0 +1,26 @@
+﻿version: 1
+common:
+  env:
+    ASPNETCORE_ENVIRONMENT: Development
+  resourcesPaths: 
+    - ../../components/local
+  debug: true
+apps:
+- appDirPath: .
+  appId: web
+  appPort: 5001
+  daprHTTPPort: 3501
+  daprGRPCPort: 35001
+  command: ["dotnet", "run", "--urls=http://localhost:5001"]
+- appDirPath: ../product
+  appId: product
+  appPort: 5002
+  daprHTTPPort: 3502
+  daprGRPCPort: 35002
+  command: ["dotnet", "run", "--urls=http://localhost:5002"]
+- appDirPath: ../order
+  appId: order
+  appPort: 5003
+  daprHTTPPort: 3503
+  daprGRPCPort: 35003
+  command: ["dotnet", "run", "--urls=http://localhost:5003"]

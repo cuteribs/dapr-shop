@@ -1,0 +1,11 @@
+@base_url = http://localhost:5002
+
+GET {{base_url}}/
+
+###
+
+GET {{base_url}}/list
+
+###
+
+GET {{base_url}}/d3b07384-d9a7-4b2a-8b0d-1e4e2b2b2b2b

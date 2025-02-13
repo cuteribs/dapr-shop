@@ -1,0 +1,25 @@
+@base_url = http://localhost:5001
+
+GET {{base_url}}/
+
+###
+
+GET {{base_url}}/products
+
+###
+
+GET {{base_url}}/products/d3b07384-d9a7-4b2a-8b0d-1e4e2b2b2b2b
+
+###
+
+GET {{base_url}}/orders
+
+###
+
+POST {{base_url}}/orders/d3b07384-d9a7-4b2a-8b0d-1e4e2b2b2b2b
+
+###
+
+DELETE {{base_url}}/orders/5f6bcf3d-9fd6-4fab-8640-57fa29c5a9b0
+
+###

@@ -1,0 +1,11 @@
+<Project>
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageVersion Include="Dapr.Actors.AspNetCore" Version="1.14.0" />
+    <PackageVersion Include="Dapr.AspNetCore" Version="1.14.0" />
+    <PackageVersion Include="Dapr.Extensions.Configuration" Version="1.14.0" />
+    <PackageVersion Include="Microsoft.Data.Sqlite" Version="8.0.13" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Dapr.Actors.AspNetCore" />
+		<PackageReference Include="Dapr.AspNetCore" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Include="..\product\Models\ProductItem.cs" Link="Models\ProductItem.cs" />
+	</ItemGroup>
+
+</Project>

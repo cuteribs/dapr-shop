@@ -1,0 +1,13 @@
+﻿version: 1
+common:
+  env:
+    ASPNETCORE_ENVIRONMENT: Development
+  resourcesPaths: 
+  - ../../components/local
+apps:
+- appDirPath: .
+  appId: product
+  appPort: 5002
+  daprHTTPPort: 3502
+  daprGRPCPort: 35002
+  # command: ["dotnet", "run", "--urls=http://localhost:5002"]

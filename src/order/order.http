@@ -1,0 +1,23 @@
+@base_url = http://localhost:5003
+
+GET {{base_url}}/
+
+###
+
+GET {{base_url}}/list
+
+###
+
+GET {{base_url}}/{id:guid}
+
+###
+
+POST {{base_url}}/sub
+
+Accept: application/json
+{
+	"operation": "add",
+	"productId": "d3b07384-d9a7-4b2a-8b0d-1e4e2b2b2b2b"
+}
+
+###
