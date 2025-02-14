@@ -38,6 +38,7 @@ app.MapGet("/{id:guid}", async (Guid id) =>
 
 app.MapPost("/ordercreate", [Topic("pubsub", "ordercreate")] async (DaprClient client, OrderCreateEvent @event) =>
 {
+	app.Logger.LogInformation("OrderCreateEvent: {ProductId}", @event.ProductId);
 	var order = new OrderItem
 	{
 		Id = Guid.NewGuid(),
@@ -53,6 +54,7 @@ app.MapPost("/ordercreate", [Topic("pubsub", "ordercreate")] async (DaprClient c
 
 app.MapPost("/ordercancel", [Topic("pubsub", "ordercancel")] async (DaprClient client, OrderCancelEvent @event) =>
 {
+	app.Logger.LogInformation("OrderCancelEvent: {OrderId}", @event.OrderId);
 	var orderId = @event.OrderId;
 	var actor = ActorProxy.Create<IOrderActor>(new ActorId(orderId.ToString()), nameof(OrderActor));
 	await actor.CancelOrder(orderId);
