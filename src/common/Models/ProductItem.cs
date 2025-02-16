@@ -1,4 +1,4 @@
-﻿namespace DaprShop.Product.Models;
+﻿namespace DaprShop.Common.Models;
 
 public class ProductItem
 {

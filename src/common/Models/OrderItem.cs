@@ -1,4 +1,4 @@
-﻿namespace DaprShop.Order.Models;
+﻿namespace DaprShop.Common.Models;
 
 public class OrderItem
 {

@@ -8,11 +8,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Include="..\order\Events\OrderCancelEvent.cs" Link="Events\OrderCancelEvent.cs" />
-		<Compile Include="..\order\Events\OrderCreateEvent.cs" Link="Events\OrderCreateEvent.cs" />
-		<Compile Include="..\order\Events\OrderUpdateEvent.cs" Link="Events\OrderUpdateEvent.cs" />
-		<Compile Include="..\order\Models\OrderItem.cs" Link="Models\OrderItem.cs" />
-		<Compile Include="..\product\Models\ProductItem.cs" Link="Models\ProductItem.cs" />
+		<ProjectReference Include="..\common\DaprShop.Common.csproj" />
 	</ItemGroup>
 
 </Project>

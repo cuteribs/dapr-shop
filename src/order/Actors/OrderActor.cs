@@ -1,6 +1,6 @@
 ﻿using Dapr.Actors;
 using Dapr.Actors.Runtime;
-using DaprShop.Order.Models;
+using DaprShop.Common.Models;
 
 namespace DaprShop.Order.Actors;
 

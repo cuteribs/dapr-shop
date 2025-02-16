@@ -10,6 +10,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\common\DaprShop.Common.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <None Update="product.db">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>

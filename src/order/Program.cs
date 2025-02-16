@@ -2,9 +2,10 @@ using Dapr;
 using Dapr.Actors;
 using Dapr.Actors.Client;
 using Dapr.Client;
+using DaprShop.Common;
+using DaprShop.Common.Events;
+using DaprShop.Common.Models;
 using DaprShop.Order.Actors;
-using DaprShop.Order.Events;
-using DaprShop.Order.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
@@ -26,7 +27,7 @@ app.MapGet("/", () => "order");
 
 app.MapGet("/list", async (DaprClient client) =>
 {
-	var orders = await client.GetStateAsync<IEnumerable<OrderItem>>("statestore", "orders") ?? [];
+	var orders = await client.GetStateAsync<IEnumerable<OrderItem>>(DaprComponents.StateStoreName, "orders") ?? [];
 	return orders;
 });
 
@@ -36,7 +37,7 @@ app.MapGet("/{id:guid}", async (Guid id) =>
 	return await actor.GetOrder();
 });
 
-app.MapPost("/ordercreate", [Topic("pubsub", "ordercreate")] async (DaprClient client, OrderCreateEvent @event) =>
+app.MapPost("/ordercreate", [Topic(DaprComponents.PubSubName, "ordercreate")] async (DaprClient client, OrderCreateEvent @event) =>
 {
 	app.Logger.LogInformation("OrderCreateEvent: {ProductId}", @event.ProductId);
 	var order = new OrderItem
@@ -46,58 +47,27 @@ app.MapPost("/ordercreate", [Topic("pubsub", "ordercreate")] async (DaprClient c
 	};
 	var actor = ActorProxy.Create<IOrderActor>(new ActorId(order.Id.ToString()), nameof(OrderActor));
 	await actor.CreateOrder(order);
-	var orders = await client.GetStateAsync<IList<OrderItem>>("statestore", "orders") ?? [];
+	var orders = await client.GetStateAsync<IList<OrderItem>>(DaprComponents.StateStoreName, "orders") ?? [];
 	orders.Add(order);
-	await client.SaveStateAsync("statestore", "orders", orders);
-	await client.PublishEventAsync("pubsub", "web", new OrderUpdateEvent());
+	await client.SaveStateAsync(DaprComponents.StateStoreName, "orders", orders);
+	await client.PublishEventAsync(DaprComponents.PubSubName, "web", new OrderUpdateEvent());
 });
 
-app.MapPost("/ordercancel", [Topic("pubsub", "ordercancel")] async (DaprClient client, OrderCancelEvent @event) =>
+app.MapPost("/ordercancel", [Topic(DaprComponents.PubSubName, "ordercancel")] async (DaprClient client, OrderCancelEvent @event) =>
 {
 	app.Logger.LogInformation("OrderCancelEvent: {OrderId}", @event.OrderId);
 	var orderId = @event.OrderId;
 	var actor = ActorProxy.Create<IOrderActor>(new ActorId(orderId.ToString()), nameof(OrderActor));
 	await actor.CancelOrder(orderId);
-	var orders = await client.GetStateAsync<IList<OrderItem>>("statestore", "orders") ?? [];
+	var orders = await client.GetStateAsync<IList<OrderItem>>(DaprComponents.StateStoreName, "orders") ?? [];
 
 	var order = orders.FirstOrDefault(x => x.Id == orderId);
 
 	if (order != null) orders.Remove(order);
 
-	await client.SaveStateAsync("statestore", "orders", orders);
-	await client.PublishEventAsync("pubsub", "web", new OrderUpdateEvent());
+	await client.SaveStateAsync(DaprComponents.StateStoreName, "orders", orders);
+	await client.PublishEventAsync(DaprComponents.PubSubName, "web", new OrderUpdateEvent());
 });
-
-//app.MapPost("/{productId:guid}", async (DaprClient client, Guid productId) =>
-//{
-//	var order = new OrderItem
-//	{
-//		Id = Guid.NewGuid(),
-//		ProductId = productId,
-//	};
-//	var actor = ActorProxy.Create<IOrderActor>(new ActorId("1"), nameof(OrderActor));
-//	await actor.CreateOrder(order);
-//	var orders = await client.GetStateAsync<IList<OrderItem>>("statestore", "orders") ?? [];
-//	orders.Add(order);
-//	await client.SaveStateAsync("statestore", "orders", orders);
-//	await client.PublishEventAsync("pubsub", "web", new OrderUpdateEvent());
-//	return order;
-//});
-
-//app.MapDelete("/{orderId:guid}", async (DaprClient client, Guid orderId) =>
-//{
-//	var actor = ActorProxy.Create<IOrderActor>(new ActorId(orderId.ToString()), nameof(OrderActor));
-//	await actor.CancelOrder(orderId);
-//	var orders = await client.GetStateAsync<IList<OrderItem>>("statestore", "orders") ?? [];
-
-//	var order = orders.FirstOrDefault(x => x.Id == orderId);
-
-//	if (order != null) orders.Remove(order);
-
-//	await client.SaveStateAsync("statestore", "orders", orders);
-//	await client.PublishEventAsync("pubsub", "web", new OrderUpdateEvent());
-//	return order;
-//});
 
 await app.RunAsync();
 

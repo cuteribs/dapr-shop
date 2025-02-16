@@ -33,6 +33,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "azure", "azure", "{7F0497CD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DaprShop.Order", "src\order\DaprShop.Order.csproj", "{8D48D366-5AE7-4BB4-B72F-F43626BECAEE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DaprShop.Common", "src\common\DaprShop.Common.csproj", "{C5484D46-81D9-493E-AD6A-33FBCEFDCDF3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{8D48D366-5AE7-4BB4-B72F-F43626BECAEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D48D366-5AE7-4BB4-B72F-F43626BECAEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D48D366-5AE7-4BB4-B72F-F43626BECAEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5484D46-81D9-493E-AD6A-33FBCEFDCDF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5484D46-81D9-493E-AD6A-33FBCEFDCDF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5484D46-81D9-493E-AD6A-33FBCEFDCDF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5484D46-81D9-493E-AD6A-33FBCEFDCDF3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,17 +1,15 @@
 using Dapr.Client;
 using Dapr.Extensions.Configuration;
+using DaprShop.Common;
 using DaprShop.Product;
 
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
 var configuration = builder.Configuration;
 
-var daprOptions = new DaprOptions();
-configuration.Bind("DaprOptions", daprOptions);
-
 var configKeys = LoadKeys(configuration.GetChildren()).ToArray();
 var daprClient = new DaprClientBuilder().Build();
-configuration.AddDaprConfigurationStore(daprOptions.ConfigStoreName!, configKeys, daprClient, TimeSpan.FromSeconds(5));   // required for dapr Config Store to work
+configuration.AddDaprConfigurationStore(DaprComponents.ConfigStoreName, configKeys, daprClient, TimeSpan.FromSeconds(5));   // required for dapr Config Store to work
 
 services.Configure<DbOptions>(configuration.GetSection("DbOptions"));
 services.AddScoped<Repository>();

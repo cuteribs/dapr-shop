@@ -1,4 +1,4 @@
-﻿using DaprShop.Product.Models;
+﻿using DaprShop.Common.Models;
 using Microsoft.Data.Sqlite;
 using Microsoft.Extensions.Options;
 

@@ -9,7 +9,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Include="..\product\Models\ProductItem.cs" Link="Models\ProductItem.cs" />
+		<ProjectReference Include="..\common\DaprShop.Common.csproj" />
 	</ItemGroup>
 
 </Project>

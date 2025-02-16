@@ -1,3 +1,3 @@
-﻿namespace DaprShop.Order.Events;
+﻿namespace DaprShop.Common.Events;
 
 public record OrderCancelEvent(Guid OrderId);
