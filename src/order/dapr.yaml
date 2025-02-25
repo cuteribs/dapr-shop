@@ -4,9 +4,11 @@ common:
     ASPNETCORE_ENVIRONMENT: Development
   resourcesPaths: 
   - ../../components/local
+  appLogDestination: console
+  daprdLogDestination: console
 apps:
 - appDirPath: .
-  appId: order
+  appID: order
   appPort: 5003
   daprHTTPPort: 3503
   daprGRPCPort: 35003

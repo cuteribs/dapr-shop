@@ -16,7 +16,7 @@ GET {{base_url}}/orders
 POST {{base_url}}/orders/d3b07384-d9a7-4b2a-8b0d-1e4e2b2b2b2b
 
 ### cancel a order
-DELETE {{base_url}}/orders/ee77fd5d-eafe-4d3f-9ddc-cb97448d506f
+DELETE {{base_url}}/orders/a2267dd5-142e-4566-a46e-efe64c44610d
 
 ### dapr runtime status
 GET http://localhost:3501/v1.0/metadata
