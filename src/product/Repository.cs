@@ -12,7 +12,7 @@ public class Repository
 	{
 		_options = options.Value;
 	}
-
+ 
 	public async Task<IEnumerable<ProductItem>> GetList()
 	{
 		using var connection = await this.OpenConnection();
