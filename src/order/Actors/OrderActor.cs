@@ -18,7 +18,7 @@ public class OrderActor : Actor, IOrderActor
 	public OrderActor(ActorHost host) : base(host) { }
 
 	public async Task CreateOrder(OrderItem order)
-	{
+	{ 
 		await StateManager.SetStateAsync(StateName, order);
 	}
 

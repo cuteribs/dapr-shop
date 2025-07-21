@@ -19,7 +19,7 @@ var logger = app.Logger;
 app.MapGet("/", () => "web");
 
 app.MapGet("/products", async (DaprClient client) =>
-{
+{ 
 	var items = await client.InvokeMethodAsync<ProductItem[]>(HttpMethod.Get, DaprApps.Product, "/list");
 	return items;
 });

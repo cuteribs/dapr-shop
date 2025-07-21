@@ -15,7 +15,7 @@ services.Configure<DbOptions>(configuration.GetSection("DbOptions"));
 services.AddScoped<Repository>();
 
 var app = builder.Build();
-
+ 
 app.MapGet("/", () => "product");
 
 app.MapGet("/list", (Repository repository) => repository.GetList());

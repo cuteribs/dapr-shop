@@ -22,7 +22,7 @@ app.MapActorsHandlers();    // required for Actor to work
 
 app.UseCloudEvents();       // required for PubSub to work
 app.MapSubscribeHandler();  // required for PubSub to work
-
+ 
 app.MapGet("/", () => "order");
 
 app.MapGet("/list", async (DaprClient client) =>
